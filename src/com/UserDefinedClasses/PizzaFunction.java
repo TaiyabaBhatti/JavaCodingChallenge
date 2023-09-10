@@ -1,29 +1,19 @@
 package com.UserDefinedClasses;
 
-import java.time.LocalDate;
+
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Scanner;
+
 
 public class PizzaFunction {
 
     public static void main(String[] args) {
 
-        Scanner sc=new Scanner(System.in);
-//        System.out.println("Enter number of pizza to have in PizzaShop..");
-//        int NoOfPizza=sc.nextInt();
-//        for (int i=0;i<NoOfPizza;i++){
-//            System.out.println("Enter Pizza Flavour (Medium only):");
-//            String pizzaFlavour=sc.next();
-//            System.out.println("Enter Pizza Price:");
-//            short pizzaPrice=sc.nextShort();
-//            pizzaList.add(new Pizzaa(pizzaFlavour,pizzaPrice));
-//        }
         System.out.println("There are four pizzas in program!!!");
         Pizzaa p1=new Pizzaa("Fajita", (short) 780);
         Pizzaa p2=new Pizzaa("Arabic", (short) 830);
         Pizzaa p3=new Pizzaa("Tandoori", (short) 560);
-        Pizzaa p4=new Pizzaa("Cheezzey", (short) 350);
+        Pizzaa p4=new Pizzaa("Cheesy", (short) 350);
 
         ArrayList<Pizzaa> pizzaList1=new ArrayList<>();
         pizzaList1.add(p1);
@@ -43,7 +33,7 @@ public class PizzaFunction {
         System.out.println("Two pizzas are offered by Domino's");
         o2.displayFlavours();
 
-        o2.makeOrder("cheezzey","tandoori");
+        o2.makeOrder("cheesy","tandoori");
         o2.calculateTotalAmount();
         o2.printOrder();
 
@@ -73,7 +63,7 @@ class Pizzaa{
 class Pizza_Shop{
  private String shopName;
  private int phoneNo;
- private ArrayList<Pizzaa> pizzaList=new ArrayList<>();
+ private ArrayList<Pizzaa> pizzaList;
 
  Pizza_Shop(String shopName, int phoneNo,ArrayList<Pizzaa> pizzaList){
      this.shopName=shopName;
@@ -115,15 +105,12 @@ class Pizza_Order{
 
     public void makeOrder(String ...pizzaFlavors){
         pizzaSelected=new String[pizzaFlavors.length];
-        for (int i = 0; i < pizzaFlavors.length; i++) {
-
-            pizzaSelected[i]=pizzaFlavors[i];
-        }
+        System.arraycopy(pizzaFlavors, 0, pizzaSelected, 0, pizzaFlavors.length);
     }
 
     public void calculateTotalAmount(){
-        short price=orderFrom.calculateAmount(pizzaSelected);
-        totalAmount=price;
+
+        totalAmount=orderFrom.calculateAmount(pizzaSelected);
     }
 
     public void printOrder(){
